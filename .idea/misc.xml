@@ -5,4 +5,7 @@
     <file type="web" url="file://$PROJECT_DIR$/Client" />
     <file type="web" url="file://$PROJECT_DIR$/Server" />
   </component>
+  <component name="ProjectRootManager">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
 </project>
