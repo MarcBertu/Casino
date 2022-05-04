@@ -10,6 +10,8 @@ version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
+
+    maven { url 'https://jitpack.io' }
 }
 
 ext {
@@ -37,6 +39,8 @@ dependencies {
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+
+    implementation 'com.github.arankin-irl:LWSL:2.0.0-Release'
 }
 
 test {
