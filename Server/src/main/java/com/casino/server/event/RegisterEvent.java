@@ -1,5 +1,6 @@
 package com.casino.server.event;
 
+import com.casino.entity.Messages;
 import com.casino.entity.Player;
 import com.casino.main.Main;
 import com.casino.packet.ResponsePacket;
@@ -7,7 +8,6 @@ import com.casino.save.SaveManager;
 import xyz.baddeveloper.lwsl.packet.Packet;
 import xyz.baddeveloper.lwsl.server.SocketHandler;
 
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -22,7 +22,7 @@ public class RegisterEvent extends Event{
         String password = packet.getObject().getString("password");
 
         if (Main.sm.getPlayerSave(username) != null) {
-            socket.sendPacket(new ResponsePacket(true, "L'utilisateur existe déjà"));
+            socket.sendPacket(new ResponsePacket(Messages.LOGIN_ERROR));
         }
 
         Player player = new Player(username, password, socket);
