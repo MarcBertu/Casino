@@ -21,8 +21,6 @@ public class Main {
         server.addEvent(new RegisterEvent());
         server.addEvent(new LoginEvent());
 
-        //Load event
-        server.loadEvent();
 
     }
 

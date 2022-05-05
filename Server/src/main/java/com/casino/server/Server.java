@@ -23,17 +23,11 @@ public class Server {
     }
 
     public void addEvent(OnPacketReceivedEvent event) {
-        this.events.add(event);
+        socketServer.addPacketReceivedEvent(event);
     }
 
     public void removeEvent(OnPacketReceivedEvent event) {
-        this.events.remove(event);
-    }
-
-    public void loadEvent() {
-        for (OnPacketReceivedEvent event : events) {
-            socketServer.addPacketReceivedEvent(event);
-        }
+        socketServer.removePacketReceivedEvent(event);
     }
 
     public SocketServer getSocketServer() {
