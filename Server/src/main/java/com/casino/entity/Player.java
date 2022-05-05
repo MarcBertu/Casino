@@ -1,13 +1,17 @@
 package com.casino.entity;
 
 
+import com.google.gson.annotations.Expose;
 import xyz.baddeveloper.lwsl.server.SocketHandler;
 
 public class Player {
 
+    @Expose
     private String username;
+    @Expose
     private String password;
 
+    @Expose
     private int score;
 
     private SocketHandler socket;
