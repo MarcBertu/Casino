@@ -5,7 +5,7 @@ import xyz.baddeveloper.lwsl.packet.Packet;
 
 public class GameInfoPacket extends Packet {
 
-    public GameInfoPacket(Games game, String name, int playersCount, int timeBeforeStart, long startedAt) {
+    public GameInfoPacket(String name, int playersCount, int timeBeforeStart, long startedAt) {
         getObject().put("packetId", "gameinfo");
         getObject().put("name", name);
         getObject().put("playersCount", playersCount);
