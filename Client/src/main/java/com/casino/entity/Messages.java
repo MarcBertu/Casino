@@ -17,4 +17,13 @@ public enum Messages {
     public String getMsg() {
         return msg;
     }
+
+    public static Messages fromString(String text) {
+        for (Messages b : Messages.values()) {
+            if (b.name().equalsIgnoreCase(text)) {
+                return b;
+            }
+        }
+        return null;
+    }
 }
