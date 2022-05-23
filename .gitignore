@@ -155,3 +155,7 @@ gradle-app.setting
 .classpath
 
 # End of https://www.toptal.com/developers/gitignore/api/gradle,java,git,intellij+all
+/Client/.gradle/buildOutputCleanup/
+/Server/.gradle/buildOutputCleanup/
+/Server/.gradle/checksums/
+/Client/.gradle/7.3.3/
