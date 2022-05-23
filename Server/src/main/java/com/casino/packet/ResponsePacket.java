@@ -1,6 +1,6 @@
 package com.casino.packet;
 
-import com.casino.entity.Messages;
+import com.casino.enums.Messages;
 import xyz.baddeveloper.lwsl.packet.Packet;
 
 public class ResponsePacket extends Packet {
