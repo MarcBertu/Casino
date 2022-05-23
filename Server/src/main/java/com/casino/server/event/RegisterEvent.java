@@ -1,6 +1,6 @@
 package com.casino.server.event;
 
-import com.casino.entity.Messages;
+import com.casino.enums.Messages;
 import com.casino.entity.Player;
 import com.casino.main.Main;
 import com.casino.packet.ResponsePacket;
@@ -22,7 +22,7 @@ public class RegisterEvent extends Event{
         String password = packet.getObject().getString("password");
 
         if (Main.sm.getPlayerSave(username) != null) {
-            socket.sendPacket(new ResponsePacket(Messages.LOGIN_ERROR));
+            socket.sendPacket(new ResponsePacket(Messages.REGISTER_ERROR));
         }
 
         Player player = new Player(username, password, socket);
