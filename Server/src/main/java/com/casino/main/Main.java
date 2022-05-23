@@ -1,5 +1,6 @@
 package com.casino.main;
 
+import com.casino.game.Blackjack;
 import com.casino.save.SaveManager;
 import com.casino.server.Server;
 import com.casino.server.event.LoginEvent;
@@ -20,6 +21,12 @@ public class Main {
         server.addEvent(new TestEvent());
         server.addEvent(new RegisterEvent());
         server.addEvent(new LoginEvent());
+
+
+
+
+        Blackjack bl = new Blackjack();
+        bl.run();
 
 
     }
