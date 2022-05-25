@@ -1,5 +1,7 @@
 package com.casino.server;
 
+import com.casino.entity.Player;
+import com.casino.main.Main;
 import xyz.baddeveloper.lwsl.server.SocketServer;
 import xyz.baddeveloper.lwsl.server.events.OnPacketReceivedEvent;
 
@@ -15,7 +17,11 @@ public class Server {
         socketServer = new SocketServer(25566)
                 .setMaxConnections(0) // 0 for infinite
                 .addConnectEvent(socket -> System.out.println(String.format("Client connected! (%s)", socket.toString())))
-                .addDisconnectEvent(socket -> System.out.println(String.format("Client disconnected! (%s)", socket.toString())))
+                .addDisconnectEvent(socket -> {
+                    System.out.println(String.format("Client disconnected! (%s)", socket.toString()));
+                    Main.players.remove(Main.getPlayer(socket));
+
+                })
                 .addPacketReceivedEvent((socket, packet) -> System.out.println(String.format("Packet received! (%s)", packet.getObject().toString())))
                 .addReadyEvent(socketServ -> System.out.println(String.format("Socket server is ready for connections! (%s)", socketServ.getServerSocket().toString())))
                 .addPacketSentEvent(((socketHandler, packet) -> System.out.println(String.format("Packet sent! (%s)", packet.getObject().toString()))));
