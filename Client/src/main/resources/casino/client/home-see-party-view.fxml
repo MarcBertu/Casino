@@ -30,7 +30,7 @@
                         <Image url="@../../casino.image/Accueil.png" />
                     </image></ImageView>
                 <Button fx:id="backButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#back" prefHeight="26.0" prefWidth="98.0" style="-fx-background-color: #FFFFFF;" text="Retour" />
-            <AnchorPane fx:id="partyListViewContainer" layoutX="100.0" layoutY="132.0" prefHeight="328.0" prefWidth="500.0" style="-fx-background-color: #000000; -fx-background-radius: 15; -fx-opacity: 0.95;">
+            <AnchorPane fx:id="partyListViewContainer" layoutX="36.0" layoutY="132.0" prefHeight="328.0" prefWidth="500.0" style="-fx-background-color: #000000; -fx-background-radius: 15; -fx-opacity: 0.95;">
                <children>
                   <ListView fx:id="partyListView" layoutX="96.0" layoutY="54.0" prefHeight="328.0" prefWidth="500.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
                </children></AnchorPane>
@@ -39,7 +39,8 @@
                   <Font name="Arial Bold" size="18.0" />
                </font>
             </Text>
-            <Button fx:id="refreshButton" layoutX="438.0" layoutY="100.0" mnemonicParsing="false" onAction="#refresh" prefHeight="26.0" prefWidth="98.0" style="-fx-background-color: #FFFFFF;" text="Actualiser" />
+            <Button fx:id="refreshButton" layoutX="63.0" layoutY="100.0" mnemonicParsing="false" onAction="#refresh" prefHeight="26.0" prefWidth="98.0" style="-fx-background-color: #FFFFFF;" text="Actualiser" />
+            <Button fx:id="joinParty" layoutX="543.0" layoutY="328.0" mnemonicParsing="false" onAction="#joinParty" prefHeight="43.0" prefWidth="142.0" style="-fx-background-color: #FFFFFF;" text="Rejoindre" />
             </children>
         </AnchorPane>
     </children>

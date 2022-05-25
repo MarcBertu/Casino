@@ -3,6 +3,8 @@ package com.casino.entity;
 import com.casino.enums.Games;
 import org.json.JSONObject;
 
+import java.util.UUID;
+
 public class GameInfo {
 
     public enum GameInfoEnum {
@@ -13,7 +15,9 @@ public class GameInfo {
         MAX_PLAYERS("maxPlayer"),
         IS_STARTED("started"),
         TIME_BEFORE_START("timeBeforeStart"),
-        CREATE_AT("createdAt");
+        CREATE_AT("createdAt"),
+
+        GAME_ID("gameId");
 
         private String value;
 
@@ -32,7 +36,10 @@ public class GameInfo {
     private int timeBeforeStart;
     private long createdAt;
 
-    public GameInfo(String name, Games game, int playerInGame, int maxPlayer, boolean isStarted, int timeBeforeStart, long createdAt) {
+    private UUID gameId;
+
+    public GameInfo(UUID gameId, String name, Games game, int playerInGame, int maxPlayer, boolean isStarted, int timeBeforeStart, long createdAt) {
+        this.gameId = gameId;
         this.name = name;
         this.game = game;
         this.playerInGame = playerInGame;
@@ -54,7 +61,7 @@ public class GameInfo {
             statut = "Prête";
         }
 
-        return name + " " + playerInGame + "/" + maxPlayer + " " + "Début dans : " + timeBeforeStart + " " + "Statut: " + statut;
+        return name + "\t" + "\t" + "Joueurs: " + playerInGame + "/" + maxPlayer + "\t" + "\t" + "Début dans : " + timeBeforeStart + "\t" + "Statut: " + statut;
     }
 
     public String getName() {
@@ -85,6 +92,10 @@ public class GameInfo {
         return createdAt;
     }
 
+    public UUID getGameId() {
+        return gameId;
+    }
+
     public static GameInfo initFrom( JSONObject object ) {
 
         String name = object.getString(GameInfoEnum.NAME.value);
@@ -101,8 +112,10 @@ public class GameInfo {
 
         long createAt = object.getLong(GameInfoEnum.CREATE_AT.value);
 
+        UUID gameId = UUID.fromString( object.getString("gameId") );
+
         GameInfo gameInfo = new GameInfo(
-                name, game, playerInGame, maxPlayer, isStarted, timeBeforeStart, createAt
+                gameId, name, game, playerInGame, maxPlayer, isStarted, timeBeforeStart, createAt
         );
 
         return gameInfo;

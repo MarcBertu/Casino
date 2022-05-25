@@ -2,6 +2,7 @@ package casino.client.controller;
 
 import Model.SocketSingleton;
 import Model.StageSingleton;
+import casino.client.task.JoinPartyTask;
 import casino.client.task.RefreshPartyListTask;
 import com.casino.entity.GameInfo;
 import com.casino.packet.AskInfoPacket;
@@ -9,6 +10,7 @@ import com.casino.packet.GameInfoPacket;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
@@ -24,6 +26,7 @@ public class SeePartyController implements RefreshPartyListTask.PartyListRespons
     public Button refreshButton;
     public Button backButton;
     public AnchorPane partyListViewContainer;
+    public Button joinParty;
 
     public void back() {
         StageSingleton.getInstance().changeScene("home-view.fxml");
@@ -69,5 +72,20 @@ public class SeePartyController implements RefreshPartyListTask.PartyListRespons
     @Override
     public void didFailedGettingList(String errorMsg) {
 
+    }
+
+    public void joinParty() {
+        try {
+
+            GameInfo game = partyListView.getSelectionModel().getSelectedItem();
+
+            SocketSingleton.getInstance().resetSocketConnection();
+
+            JoinPartyTask joinPartyTask = new JoinPartyTask(this, game);
+
+        } catch ( Exception e) {
+            System.out.println("Apparu a SeePartyController - joinParty");
+            System.out.println(e.getMessage());
+        }
     }
 }
