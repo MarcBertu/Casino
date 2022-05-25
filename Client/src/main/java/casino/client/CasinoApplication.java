@@ -49,6 +49,7 @@ public class CasinoApplication extends Application {
             SocketSingleton.getInstance().setSocketClient(socketclient);
 
             System.out.println(socketclient.isConnected());
+
         } catch (ConnectException e) {
             e.printStackTrace();
         }
