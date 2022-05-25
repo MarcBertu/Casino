@@ -2,6 +2,8 @@ package com.casino.entity;
 
 import com.casino.enums.Games;
 
+import java.util.UUID;
+
 public class GameInfo {
 
     private String name;
@@ -11,8 +13,10 @@ public class GameInfo {
     private boolean isStarted;
     private int timeBeforeStart;
     private long createdAt;
+    private UUID gameId;
 
-    public GameInfo(String name, Games game, int playerInGame, int maxPlayer, boolean isStarted, int timeBeforeStart, long createdAt) {
+    public GameInfo(UUID gameId, String name, Games game, int playerInGame, int maxPlayer, boolean isStarted, int timeBeforeStart, long createdAt) {
+        this.gameId = gameId;
         this.name = name;
         this.game = game;
         this.playerInGame = playerInGame;
@@ -48,5 +52,9 @@ public class GameInfo {
 
     public long getCreatedAt() {
         return createdAt;
+    }
+
+    public UUID getGameId() {
+        return gameId;
     }
 }

@@ -13,9 +13,8 @@ public class GameInfoPacket extends Packet {
         getObject().put("packetId", "gameInfo");
         List<GameInfo> gameInfos = new ArrayList<GameInfo>();
 
-        for (Runnable runna : games) {
-            Game game = (Game) runna;
-            GameInfo gi = new GameInfo(game.getName(), game.getType(), game.getPlayers().size(), game.getMaxPlayer(), false, game.getPreGameCounter(), game.getCreatedAt());
+        for (Game game : games) {
+            GameInfo gi = new GameInfo(game.getGameId(), game.getName(), game.getType(), game.getPlayers().size(), game.getMaxPlayer(), false, game.getPreGameCounter(), game.getCreatedAt());
             gameInfos.add(gi);
         }
 
