@@ -35,9 +35,9 @@ public class LoginEvent extends Event{
             }
 
             player.setSocket(socket);
-            player.getSocket().sendPacket(new ResponsePacket(Messages.LOGIN_SUCCESS));
-
             Main.players.add(player);
+
+            player.getSocket().sendPacket(new ResponsePacket(Messages.LOGIN_SUCCESS));
 
 
         } catch (FileNotFoundException e) {

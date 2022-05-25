@@ -49,6 +49,10 @@ public abstract class Game extends Thread{
         this.players.removeIf(player -> player.getUsername().equals(playerName));
     }
 
+    public void removePlayer(Player player) {
+        this.players.remove(player);
+    }
+
     public List<Player> getPlayers() {
         return players;
     }

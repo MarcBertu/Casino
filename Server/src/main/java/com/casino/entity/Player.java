@@ -14,6 +14,9 @@ public class Player {
     @Expose
     private int score;
 
+    @Expose
+    private int money;
+
     private SocketHandler socket;
 
     public Player(String username, String password, SocketHandler socket) {
@@ -44,5 +47,13 @@ public class Player {
 
     public void setSocket(SocketHandler socket) {
         this.socket = socket;
+    }
+
+    public int getMoney() {
+        return money;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
     }
 }
