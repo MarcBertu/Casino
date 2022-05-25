@@ -1,6 +1,5 @@
 package com.casino.packet;
 
-import com.casino.enums.Games;
 import xyz.baddeveloper.lwsl.packet.Packet;
 
 public class GameInfoPacket extends Packet {

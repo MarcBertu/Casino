@@ -16,14 +16,22 @@ import java.io.IOException;
 
 public class CasinoApplication extends Application {
     @Override
-    public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(CasinoApplication.class.getResource("casino-app-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 700, 500);
-        stage.setScene(scene);
-        stage.setResizable(false);
-        stage.show();
+    public void start(Stage stage) {
 
-        StageSingleton.getInstance().setStage(stage);
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(CasinoApplication.class.getResource("casino-app-view.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 700, 500);
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
+
+            StageSingleton.getInstance().setStage(stage);
+        } catch ( Exception e ) {
+            System.out.println("Apparu à Casino-application start()");
+            System.out.println(e.getMessage());
+        }
+
+
     }
 
     public static void main(String[] args) {
@@ -34,10 +42,12 @@ public class CasinoApplication extends Application {
     }
 
     public static void connectToServer() {
-        SocketClient socketclient = null;
-        try {
-            socketclient = new SocketClient("192.168.93.136", 25566)
-//            socketclient = new SocketClient("localhost", 25566)
+
+        try{
+            SocketClient socketclient = null;
+
+            //socketclient = new SocketClient("192.168.93.136", 25566)
+                    socketclient = new SocketClient("localhost", 25566)
                     .setKeepAlive(true)
                     .addConnectEvent(onConnect -> System.out.println("Connected!"))
                     .addDisconnectEvent( onDisconnect -> System.out.println("Disconnected!"))
@@ -47,11 +57,9 @@ public class CasinoApplication extends Application {
             socketclient.connect();
 
             SocketSingleton.getInstance().setSocketClient(socketclient);
-
-            System.out.println(socketclient.isConnected());
-
-        } catch (ConnectException e) {
-            e.printStackTrace();
+        } catch ( Exception e ) {
+            System.out.println("Apparu à CasinoApplication - connectToServeur");
+            System.out.println(e.getMessage());
         }
 
     }

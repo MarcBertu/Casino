@@ -7,4 +7,5 @@ public class AskInfoPacket extends Packet {
     public AskInfoPacket() {
         getObject().put("packetId", "askInfoPacket");
     }
+
 }

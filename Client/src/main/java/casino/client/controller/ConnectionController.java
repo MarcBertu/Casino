@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import xyz.baddeveloper.lwsl.client.SocketClient;
+import xyz.baddeveloper.lwsl.client.exceptions.ConnectException;
 
 import java.io.IOException;
 
@@ -24,46 +25,66 @@ public class ConnectionController implements ConnectionTask.ConnectionResponse {
     public Label errorText;
 
     @FXML
-    protected void connect() throws IOException {
-        String user = userText.getText();
-        String password = passwordText.getText();
+    protected void connect() {
 
-        int connectionType = SocketSingleton.getInstance().getConnectionType();
+        try{
+            String user = userText.getText();
+            String password = passwordText.getText();
 
-        errorText.setVisible(false);
-        errorText.setText("");
+            int connectionType = SocketSingleton.getInstance().getConnectionType();
 
-        ConnectionTask task = new ConnectionTask(this, user, password, String.valueOf(connectionType));
+            errorText.setVisible(false);
+            errorText.setText("");
+
+            ConnectionTask task = new ConnectionTask(this, user, password, String.valueOf(connectionType));
+        } catch ( Exception e ) {
+            System.out.println("Apparu à ConnectionController - connect");
+            System.out.println(e.getMessage());
+        }
+
 
     }
 
     @FXML
-    public void back() throws IOException {
+    public void back() {
         StageSingleton.getInstance().changeScene("casino-app-view.fxml");
     }
 
     @Override
     public void didConnect() {
-        Platform.runLater(new Runnable(){
-            @Override
-            public void run() {
-                try {
+
+        try{
+            Platform.runLater(new Runnable(){
+                @Override
+                public void run() {
                     StageSingleton.getInstance().changeScene("home-view.fxml");
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
-            }
-        });
+            });
+        } catch ( Exception e ) {
+            System.out.println("Apparu à ConnectionController - didConnect");
+            System.out.println(e.getMessage());
+        }
+
     }
 
     @Override
     public void didFailedConnect( String errorMsg) {
-        Platform.runLater(new Runnable(){
-            @Override
-            public void run() {
-                errorText.setVisible(true);
-                errorText.setText(errorMsg);
-            }
-        });
+
+        try{
+            Platform.runLater(new Runnable(){
+                @Override
+                public void run() {
+                    errorText.setVisible(true);
+                    errorText.setText(errorMsg);
+                }
+            });
+
+            SocketSingleton.getInstance().resetSocketConnection();
+            this.connect();
+
+        } catch ( Exception e ) {
+            System.out.println("Apparu à ConnectionController - didFailedConnect");
+            System.out.println(e.getMessage());
+        }
     }
 }

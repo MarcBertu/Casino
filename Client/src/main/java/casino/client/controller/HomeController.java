@@ -10,7 +10,7 @@ import java.io.IOException;
 public class HomeController {
 
     @FXML
-    public void back() throws IOException {
+    public void back() {
 
         SocketSingleton.getInstance().getSocketClient().shutdown();
 
@@ -18,6 +18,10 @@ public class HomeController {
 
         StageSingleton.getInstance().changeScene("casino-app-view.fxml");
 
+    }
+
+    public void startGame() {
+        StageSingleton.getInstance().changeScene("home-see-party-view.fxml");
     }
 
 }

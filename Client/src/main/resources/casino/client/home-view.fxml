@@ -21,7 +21,7 @@
                     <image>
                         <Image url="@../../casino.image/Accueil.png" />
                     </image></ImageView>
-                <Button fx:id="startGameButton" layoutX="245.0" layoutY="309.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="210.0" style="-fx-background-color: #FFFFFF;" text="Jouer" />
+                <Button fx:id="startGameButton" layoutX="245.0" layoutY="309.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="210.0" style="-fx-background-color: #FFFFFF;" onAction="#startGame" text="Jouer" />
                 <Button layoutX="245.0" layoutY="421.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="210.0" style="-fx-background-color: #FFFFFF;" text="Transférer mon argent" />
             <Button layoutX="245.0" layoutY="364.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="210.0" style="-fx-background-color: #FFFFFF;" text="Historique" />
             <Button fx:id="backButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="98.0" style="-fx-background-color: #FFFFFF;" onAction="#back" text="Déconnexion" />

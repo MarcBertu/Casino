@@ -1,4 +1,4 @@
-package com.casino.entity;
+package com.casino.enums;
 
 public enum Messages {
 
@@ -20,7 +20,7 @@ public enum Messages {
 
     public static Messages fromString(String text) {
         for (Messages b : Messages.values()) {
-            if (b.name().equalsIgnoreCase(text)) {
+            if (b.name().equals(text)) {
                 return b;
             }
         }

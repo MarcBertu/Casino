@@ -31,13 +31,15 @@ public class StageSingleton {
     }
 
     public void changeScene(String fxmlFile) {
-        try {
+
+        try{
             FXMLLoader fxmlLoader = new FXMLLoader(CasinoApplication.class.getResource(fxmlFile));
             Scene scene = new Scene(fxmlLoader.load(), 700, 500);
             stage.setScene(scene);
             stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch ( Exception e ) {
+            System.out.println("Apparu à StageSingleton - changeScene");
+            System.out.println(e.getMessage());
         }
     }
 }
