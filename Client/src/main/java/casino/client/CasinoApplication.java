@@ -3,18 +3,23 @@ package casino.client;
 import Model.EnumSingleton;
 import Model.SocketSingleton;
 import Model.StageSingleton;
+import Model.UserSingleton;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.json.JSONObject;
 import xyz.baddeveloper.lwsl.client.SocketClient;
+import xyz.baddeveloper.lwsl.client.events.OnPacketReceivedEvent;
 import xyz.baddeveloper.lwsl.client.exceptions.ConnectException;
+import xyz.baddeveloper.lwsl.packet.Packet;
 
 import java.io.IOException;
 
 
 public class CasinoApplication extends Application {
+
     @Override
     public void start(Stage stage) {
 
@@ -53,12 +58,28 @@ public class CasinoApplication extends Application {
                     .addDisconnectEvent( onDisconnect -> System.out.println("Disconnected!"))
                     .addPacketReceivedEvent(((socket, packet) -> System.out.println(String.format("Received packet %s from %s.", packet.getObject().toString(), socket.getAddress()))))
                     .addPacketReceivedEvent((socket, packet) -> EnumSingleton.packetManage(packet))
-                    .addPacketSentEvent(((socketClient, packet) -> System.out.println(String.format("Sent packet %s to %s.", packet.getObject().toString(), socketClient.getAddress()))));
+                    .addPacketSentEvent(((socketClient, packet) -> System.out.println(String.format("Sent packet %s to %s.", packet.getObject().toString(), socketClient.getAddress()))))
+                    .addPacketReceivedEvent(((socket, packet) -> packetSetMoney(packet) ) );
             socketclient.connect();
 
             SocketSingleton.getInstance().setSocketClient(socketclient);
         } catch ( Exception e ) {
             System.out.println("Apparu à CasinoApplication - connectToServeur");
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+    static void packetSetMoney(Packet packet) {
+
+        try {
+            JSONObject object = packet.getObject();
+            if( object.getString("packetId").contentEquals("playerInformation") ) {
+                int money = packet.getObject().getInt("money");
+                UserSingleton.getInstance().setArgent(money);
+            }
+        } catch (Exception e) {
+            System.out.println("Apparu ici ta mere ");
             System.out.println(e.getMessage());
         }
 

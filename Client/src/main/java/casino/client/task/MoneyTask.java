@@ -1,39 +1,31 @@
 package casino.client.task;
 
 import Model.SocketSingleton;
-import Model.UserSingleton;
-import casino.client.controller.ConnectionController;
-import casino.client.controller.HomeController;
+import casino.client.controller.SeePartyController;
+import com.casino.entity.GameInfo;
 import com.casino.enums.Messages;
-import com.casino.packet.LoginPacket;
-import com.casino.packet.RegisterPacket;
-import com.casino.utils.Utils;
-import javafx.event.Event;
+import com.casino.packet.JoinStatusPacket;
 import org.json.JSONObject;
 import xyz.baddeveloper.lwsl.client.SocketClient;
 import xyz.baddeveloper.lwsl.client.events.OnPacketReceivedEvent;
 import xyz.baddeveloper.lwsl.packet.Packet;
 
 import java.util.Objects;
+import java.util.UUID;
 
-public class ConnectionTask
-{
+public class MoneyTask {
 
     private OnPacketReceivedEvent event = null;
-    private ConnectionController delegate = null;
+    private SeePartyController delegate = null;
 
-    private HomeController delegateHome = null;
-
-    public interface ConnectionResponse {
-        void didConnect();
-
-        void didFailedConnect(String errorMsg);
+    public interface JoinPartyResponse {
+        void didJoined();
+        void didFailedToJoin(String errorMsg);
     }
 
-    public ConnectionTask(ConnectionController delegate, String... params) {
+    public MoneyTask(SeePartyController delegate, GameInfo gameInfo) {
 
         try{
-
             this.delegate = delegate;
 
             SocketClient socketClient = SocketSingleton.getInstance().getSocketClient();
@@ -50,19 +42,14 @@ public class ConnectionTask
 
             socketClient.addPacketReceivedEvent( event );
 
-            String user = params[0];
-            String password = params[1];
-            int connectionType = Integer.parseInt(params[2]);
+            UUID uuid = gameInfo.getGameId();
 
-            if( connectionType == SocketSingleton.USER_REGISTER_REQUEST) {
-                socketClient.sendPacket(new RegisterPacket(user, Utils.hash(password)));
-            }
-            else if( connectionType == SocketSingleton.USER_LOGIN_REQUEST) {
-                socketClient.sendPacket(new LoginPacket(user, Utils.hash(password)));
-            }
+            socketClient.sendPacket( new JoinStatusPacket(true, uuid) );
+
+            this.delegate.didJoined();
 
         } catch ( Exception e ) {
-            System.out.println("Apparu à ConnectionTask - constructor");
+            System.out.println("Apparu à MoneyTask - constructor");
             System.out.println(e.getMessage());
         }
 
@@ -71,17 +58,16 @@ public class ConnectionTask
     private void packetController(Packet packet) {
 
         try{
-
             JSONObject object = packet.getObject();
             Messages message = Messages.fromString(object.getString("msg"));
 
             switch (Objects.requireNonNull(message)) {
-                case LOGIN_SUCCESS, REGISTER_SUCCESS -> this.delegate.didConnect();
-                case LOGIN_ERROR, REGISTER_ERROR, WRONG_PASSWORD -> this.delegate.didFailedConnect(message.getMsg());
+                case JOIN_SUCCESS -> this.delegate.didJoined();
+                case JOIN_ERROR, GAME_FULL -> this.delegate.didFailedToJoin(message.getMsg());
             }
 
         } catch ( Exception e ) {
-            System.out.println("Apparu à ConnectionTask - packetController");
+            System.out.println("Apparu à MoneyTask - packetController");
             System.out.println(e.getMessage());
         }
 

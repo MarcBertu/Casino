@@ -31,42 +31,14 @@ public class LeavePartyTask {
 
             SocketClient socketClient = SocketSingleton.getInstance().getSocketClient();
 
-            event = new OnPacketReceivedEvent() {
-                @Override
-                public void onPacketReceived(SocketClient socket, Packet packet) {
-                    JSONObject object = packet.getObject();
-                    if( object.getString("packetId").contentEquals("responseMsg") ) {
-                        packetController(packet);
-                    }
-                }
-            };
-
-            socketClient.addPacketReceivedEvent( event );
-
             UUID uuid = gameInfo.getGameId();
 
             socketClient.sendPacket( new JoinStatusPacket(false, uuid) );
 
+            this.delegate.didLeaved();
+
         } catch ( Exception e ) {
             System.out.println("Apparu à LeavePartyTask - constructor");
-            System.out.println(e.getMessage());
-        }
-
-    }
-
-    private void packetController(Packet packet) {
-
-        try{
-            JSONObject object = packet.getObject();
-            Messages message = Messages.fromString(object.getString("msg"));
-
-            switch (Objects.requireNonNull(message)) {
-                case JOIN_SUCCESS -> this.delegate.didLeaved();
-                case JOIN_ERROR, GAME_FULL -> this.delegate.didFailedToJoin(message.getMsg());
-            }
-
-        } catch ( Exception e ) {
-            System.out.println("Apparu à LeavePartyTask - packetController");
             System.out.println(e.getMessage());
         }
 

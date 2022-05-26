@@ -4,6 +4,7 @@ import Model.SocketSingleton;
 import Model.StageSingleton;
 import Model.UserSingleton;
 import casino.client.CasinoApplication;
+import casino.client.task.ConnectionTask;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -47,5 +48,6 @@ public class HomeController {
     public void startGame() {
         StageSingleton.getInstance().changeScene("home-see-party-view.fxml");
     }
+
 
 }
