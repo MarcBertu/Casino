@@ -5,10 +5,7 @@ import com.casino.game.Blackjack;
 import com.casino.game.GameManager;
 import com.casino.save.SaveManager;
 import com.casino.server.Server;
-import com.casino.server.event.AskInfoEvent;
-import com.casino.server.event.LoginEvent;
-import com.casino.server.event.RegisterEvent;
-import com.casino.server.event.TestEvent;
+import com.casino.server.event.*;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -35,7 +32,7 @@ public class Main {
         server.addEvent(new RegisterEvent());
         server.addEvent(new LoginEvent());
         server.addEvent(new AskInfoEvent());
-
+        server.addEvent(new MoneyEvent());
 
         gm = new GameManager();
         gm.run();

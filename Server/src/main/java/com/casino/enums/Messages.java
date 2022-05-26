@@ -6,7 +6,11 @@ public enum Messages {
     LOGIN_ERROR("Utilisateur n'existe pas"),
     WRONG_PASSWORD("Mot de passe incorrect"),
     REGISTER_ERROR("Utilisateur déjà existant"),
-    REGISTER_SUCCESS("Utilisateur enregistré");
+    REGISTER_SUCCESS("Utilisateur enregistré"),
+    JOIN_SUCCESS(""),
+    GAME_FULL(""),
+    JOIN_ERROR(""),
+    NO_ENOUGH_MONEY("");
 
     String msg;
     Messages(String msg)
