@@ -3,6 +3,7 @@ package com.casino.server.event;
 import com.casino.enums.Messages;
 import com.casino.entity.Player;
 import com.casino.main.Main;
+import com.casino.packet.PlayerInformationPacket;
 import com.casino.packet.ResponsePacket;
 import com.casino.save.SaveManager;
 import xyz.baddeveloper.lwsl.packet.Packet;
@@ -37,6 +38,7 @@ public class LoginEvent extends Event{
             player.setSocket(socket);
             Main.players.add(player);
 
+            player.getSocket().sendPacket(new PlayerInformationPacket(player, true));
             player.getSocket().sendPacket(new ResponsePacket(Messages.LOGIN_SUCCESS));
 
 
