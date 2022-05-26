@@ -26,6 +26,7 @@ public class RegisterEvent extends Event{
         }
 
         Player player = new Player(username, password, socket);
+        player.setMoney(1000);
 
         try(FileWriter writer = new FileWriter(SaveManager.SAVE_PLAYER_FOLDER + "/" + username + ".json")) {
             Main.gson.toJson(player, writer);

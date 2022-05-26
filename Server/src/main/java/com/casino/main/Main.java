@@ -33,6 +33,7 @@ public class Main {
         server.addEvent(new LoginEvent());
         server.addEvent(new AskInfoEvent());
         server.addEvent(new MoneyEvent());
+        server.addEvent(new JoinStatusEvent());
 
         gm = new GameManager();
         gm.run();
