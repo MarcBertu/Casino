@@ -2,6 +2,7 @@ package casino.client.controller;
 
 import Model.SocketSingleton;
 import Model.StageSingleton;
+import Model.UserSingleton;
 import casino.client.task.ConnectionTask;
 import com.casino.packet.LoginPacket;
 import com.casino.packet.RegisterPacket;
@@ -54,6 +55,8 @@ public class ConnectionController implements ConnectionTask.ConnectionResponse {
     public void didConnect() {
 
         try{
+
+            UserSingleton.getInstance().setPseudo( userText.getText() );
             Platform.runLater(new Runnable(){
                 @Override
                 public void run() {

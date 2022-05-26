@@ -9,12 +9,14 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-
 <?import javafx.scene.shape.Circle?>
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="casino.client.controller.GameController">
     <children>
         <MenuBar style="-fx-background-color: #FFFFFF;">
             <menus>
@@ -31,16 +33,16 @@
                     <image>
                         <Image url="@../../casino.image/Plateau - Début partie.png" />
                     </image></ImageView>
-            <Pane layoutX="393.0" layoutY="14.0" prefHeight="46.0" prefWidth="292.0" style="-fx-background-color: #393939; -fx-border-radius: 15; -fx-background-radius: 15;">
+            <Pane layoutX="423.0" layoutY="14.0" prefHeight="46.0" prefWidth="262.0" style="-fx-background-color: #393939; -fx-border-radius: 15; -fx-background-radius: 15;">
                <children>
-                  <AnchorPane prefHeight="46.0" prefWidth="292.0">
+                  <AnchorPane prefHeight="46.0" prefWidth="262.0">
                      <children>
                         <Label alignment="CENTER" prefHeight="46.0" prefWidth="82.0" text="Argent :" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER_RIGHT" layoutX="89.0" layoutY="6.0" prefHeight="46.0" prefWidth="203.0" text="0 €" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="89.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
+                        <Label fx:id="moneyLabel" alignment="CENTER_RIGHT" layoutX="89.0" layoutY="6.0" prefHeight="46.0" prefWidth="203.0" text="0 €" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="89.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
                            <font>
                               <Font name="Arial" size="18.0" />
                            </font>
@@ -48,16 +50,16 @@
                      </children>
                   </AnchorPane>
                </children></Pane>
-            <Pane layoutX="14.0" layoutY="14.0" prefHeight="46.0" prefWidth="292.0" style="-fx-background-color: #393939; -fx-border-radius: 15; -fx-background-radius: 15;">
+            <Pane layoutX="140.0" layoutY="14.0" prefHeight="46.0" prefWidth="250.0" style="-fx-background-color: #393939; -fx-border-radius: 15; -fx-background-radius: 15;">
                <children>
-                  <AnchorPane prefHeight="46.0" prefWidth="292.0">
+                  <AnchorPane prefHeight="46.0" prefWidth="250.0">
                      <children>
                         <Label alignment="CENTER" prefHeight="46.0" prefWidth="67.0" text="Mise :" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER_RIGHT" layoutX="74.0" layoutY="6.0" prefHeight="46.0" prefWidth="218.0" text="0 €" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="74.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
+                        <Label fx:id="miseLabel" alignment="CENTER_RIGHT" layoutX="74.0" layoutY="6.0" prefHeight="46.0" prefWidth="163.0" text="0 €" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="74.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="0.0">
                            <font>
                               <Font name="Arial Bold" size="18.0" />
                            </font>
@@ -66,29 +68,74 @@
                   </AnchorPane>
                </children>
             </Pane>
-            <Pane layoutX="101.0" layoutY="93.0" prefHeight="46.0" prefWidth="292.0" style="-fx-background-color: #393939; -fx-border-radius: 15; -fx-background-radius: 15;">
-               <children>
-                  <AnchorPane prefHeight="46.0" prefWidth="292.0">
-                     <children>
-                        <TextField layoutX="60.0" layoutY="11.0" prefHeight="46.0" prefWidth="292.0" promptText="Entrez votre mise..." style="-fx-background-color: #393939;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="5.0">
-                           <font>
-                              <Font name="Arial Bold" size="14.0" />
-                           </font>
-                        </TextField>
-                     </children>
-                  </AnchorPane>
-               </children>
-            </Pane>
-            <Button layoutX="423.0" layoutY="93.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="131.0" style="-fx-background-color: #FFFFFF;" text="MISER">
-               <font>
-                  <Font name="Arial Bold" size="13.0" />
-               </font>
-            </Button>
             <Circle fill="#521502" layoutX="54.0" layoutY="394.0" radius="44.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
             <Circle fill="#521502" layoutX="184.0" layoutY="280.0" radius="44.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
             <Circle fill="#521502" layoutX="350.0" layoutY="246.0" radius="44.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
             <Circle fill="#521502" layoutX="516.0" layoutY="279.0" radius="44.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
             <Circle fill="#521502" layoutX="644.0" layoutY="393.0" radius="44.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Button fx:id="leaveParty" layoutX="10.0" layoutY="14.0" mnemonicParsing="false" onAction="#back" prefHeight="36.0" prefWidth="99.0" style="-fx-background-color: #FFFFFF;" text="QUITTER">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font>
+            </Button>
+            <HBox fx:id="miseLayout" layoutX="147.0" layoutY="78.0" prefHeight="46.0" prefWidth="406.0" spacing="5.0">
+               <children>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <TextField fx:id="miseField" prefHeight="46.4" prefWidth="174.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="46.0" prefWidth="111.0" HBox.hgrow="NEVER">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#miser" prefHeight="46.4" prefWidth="100.0" text="Miser" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </HBox>
+            <HBox fx:id="actionLayout" layoutX="147.0" layoutY="95.0" prefHeight="46.0" prefWidth="406.0" spacing="15.0" style="visibility: false;">
+               <children>
+                  <AnchorPane HBox.hgrow="ALWAYS">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#jouer" text="Demander" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane HBox.hgrow="ALWAYS">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#passer" text="Passer" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane HBox.hgrow="ALWAYS">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#doubler" text="Doubler" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </HBox>
+            <Text fx:id="pseudoPlayerOne" fill="WHITE" layoutX="334.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vous">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <Text fx:id="pseudoPlayerTwo" fill="WHITE" layoutX="168.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <Text fx:id="pseudoPlayerThree" fill="WHITE" layoutX="499.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <Text fx:id="pseudoPlayerFour" fill="WHITE" layoutX="37.0" layoutY="339.0" strokeType="OUTSIDE" strokeWidth="0.0">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <Text fx:id="pseudoPlayerFive" fill="WHITE" layoutX="628.0" layoutY="338.0" strokeType="OUTSIDE" strokeWidth="0.0">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
             </children>
         </AnchorPane>
     </children>

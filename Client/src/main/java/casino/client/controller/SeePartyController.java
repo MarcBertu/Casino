@@ -2,7 +2,9 @@ package casino.client.controller;
 
 import Model.SocketSingleton;
 import Model.StageSingleton;
+import Model.UserSingleton;
 import casino.client.task.JoinPartyTask;
+import casino.client.task.LeavePartyTask;
 import casino.client.task.RefreshPartyListTask;
 import com.casino.entity.GameInfo;
 import com.casino.packet.AskInfoPacket;
@@ -11,7 +13,9 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -19,7 +23,8 @@ import javafx.scene.layout.VBox;
 import java.util.ArrayList;
 import java.util.zip.Inflater;
 
-public class SeePartyController implements RefreshPartyListTask.PartyListResponse  {
+public class SeePartyController implements RefreshPartyListTask.PartyListResponse,
+                                            JoinPartyTask.JoinPartyResponse {
 
     public ObservableList<GameInfo> games = FXCollections.observableArrayList();
     public ListView<GameInfo> partyListView = new ListView<>(games);
@@ -27,6 +32,28 @@ public class SeePartyController implements RefreshPartyListTask.PartyListRespons
     public Button backButton;
     public AnchorPane partyListViewContainer;
     public Button joinParty;
+    public Label moneyLabel;
+
+    @FXML
+    void initialize(){
+
+
+        try {
+
+            Platform.runLater(new Runnable(){
+                @Override
+                public void run() {
+                    moneyLabel.setText( UserSingleton.getInstance().getArgent() + "€" );
+
+                    refresh();
+                }
+            });
+
+        } catch ( Exception e ) {
+            System.out.println("Apparu a GameController - init");
+            System.out.println(e.getMessage());
+        }
+    }
 
     public void back() {
         StageSingleton.getInstance().changeScene("home-view.fxml");
@@ -81,11 +108,28 @@ public class SeePartyController implements RefreshPartyListTask.PartyListRespons
 
             SocketSingleton.getInstance().resetSocketConnection();
 
+            UserSingleton.getInstance().setGame(game);
+
             JoinPartyTask joinPartyTask = new JoinPartyTask(this, game);
 
         } catch ( Exception e) {
             System.out.println("Apparu a SeePartyController - joinParty");
             System.out.println(e.getMessage());
         }
+    }
+
+    @Override
+    public void didJoined() {
+        try {
+            StageSingleton.getInstance().changeScene("game-view.fxml");
+        } catch (Exception e) {
+            System.out.println("Apparu a SeePartyController - didJoined");
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @Override
+    public void didFailedToJoin(String errorMsg) {
+
     }
 }

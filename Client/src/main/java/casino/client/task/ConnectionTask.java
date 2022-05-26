@@ -18,6 +18,7 @@ public class ConnectionTask
 {
 
     private OnPacketReceivedEvent event = null;
+    private OnPacketReceivedEvent eventMoney = null;
     private ConnectionController delegate = null;
 
     public interface ConnectionResponse {
@@ -42,6 +43,16 @@ public class ConnectionTask
                     }
                 }
             };
+
+            /*eventMoney = new OnPacketReceivedEvent() {
+                @Override
+                public void onPacketReceived(SocketClient socket, Packet packet) {
+                    JSONObject object = packet.getObject();
+                    if( object.getString("packetId").contentEquals("login") ) {
+                        packetController(packet);
+                    }
+                }
+            };*/
 
             socketClient.addPacketReceivedEvent( event );
 

@@ -43,6 +43,7 @@ public class JoinStatusEvent extends Event{
                 game.addPlayer(Main.getPlayer(socket.getSocket()));
                 socket.sendPacket(new ResponsePacket(Messages.JOIN_SUCCESS));
             }
+
         } else {
             game.removePlayer(Main.getPlayer(socket.getSocket()));
         }
