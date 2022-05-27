@@ -1,6 +1,7 @@
 package com.casino.server;
 
 import com.casino.entity.Player;
+import com.casino.game.Game;
 import com.casino.main.Main;
 import xyz.baddeveloper.lwsl.server.SocketServer;
 import xyz.baddeveloper.lwsl.server.events.OnPacketReceivedEvent;
@@ -19,7 +20,15 @@ public class Server {
                 .addConnectEvent(socket -> System.out.println(String.format("Client connected! (%s)", socket.toString())))
                 .addDisconnectEvent(socket -> {
                     System.out.println(String.format("Client disconnected! (%s)", socket.toString()));
+
+                    for (Game game : Main.gm.getGames()) {
+                        if (game.isInGame(socket)) {
+                            game.removePlayer(Main.getPlayer(socket));
+                        }
+                    }
+
                     Main.players.remove(Main.getPlayer(socket));
+
 
                 })
                 .addPacketReceivedEvent((socket, packet) -> System.out.println(String.format("Packet received! (%s)", packet.getObject().toString())))

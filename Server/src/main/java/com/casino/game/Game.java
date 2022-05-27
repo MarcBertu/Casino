@@ -4,6 +4,7 @@ import com.casino.entity.Hand;
 import com.casino.enums.Games;
 import com.casino.entity.Player;
 
+import java.net.Socket;
 import java.sql.Time;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -21,6 +22,8 @@ public abstract class Game extends Thread{
     private long createdAt;
     protected int maxPlayer = 1;
     protected int preGameCounter;
+    protected int miseTimer = 30;
+    private HashMap<Player, Integer> playerMise = new HashMap<>();
 
     public Game() {
         this.gameId = UUID.randomUUID();
@@ -57,9 +60,27 @@ public abstract class Game extends Thread{
         return players;
     }
 
+    public HashMap<Player, Hand> getPlayerCard() {
+        return this.playerCard;
+    }
+
+    public HashMap<Player, Integer> getPlayerMises() {
+        return this.playerMise;
+    }
+
     public boolean isInGame(SocketHandler socket) {
         for (Player player : players) {
             if (player.getSocket().equals(socket)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public boolean isInGame(Socket socket) {
+        for (Player player : players) {
+            if (player.getSocket().getSocket().equals(socket)) {
                 return true;
             }
         }
@@ -83,5 +104,9 @@ public abstract class Game extends Thread{
 
     public int getPreGameCounter() {
         return preGameCounter;
+    }
+
+    public int getMiseTimer() {
+        return miseTimer;
     }
 }
