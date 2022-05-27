@@ -41,7 +41,7 @@
                      <children>
                         <AnchorPane prefHeight="46.0" prefWidth="210.0">
                            <children>
-                              <TextField fx:id="userText" alignment="CENTER" prefHeight="46.0" prefWidth="210.0" promptText="Entrez votre nom d'utilisateur" text="Marc" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <TextField fx:id="userText" alignment="CENTER" prefHeight="46.0" prefWidth="210.0" promptText="Entrez votre nom d'utilisateur" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <font>
                                     <Font name="Arial Bold" size="12.0" />
                                  </font>
@@ -57,7 +57,7 @@
                      <children>
                         <AnchorPane prefHeight="46.0" prefWidth="210.0">
                            <children>
-                              <TextField fx:id="passwordText" alignment="CENTER" prefHeight="46.0" prefWidth="210.0" promptText="Entrez votre mot de passe" text="faispascohier">
+                              <TextField fx:id="passwordText" alignment="CENTER" prefHeight="46.0" prefWidth="210.0" promptText="Entrez votre mot de passe" >
                                  <font>
                                     <Font name="Arial Bold" size="12.0" />
                                  </font>

@@ -50,13 +50,13 @@ public class SocketSingleton {
         this.connectionType = connectionType;
     }
 
-    public void resetSocketConnection() throws ConnectException {
+    public void resetSocketConnection() {
 
         try{
             SocketClient socketclient = null;
 
-            //socketClient = new SocketClient("192.168.93.136", 25566)
-                    socketclient = new SocketClient("localhost", 25566)
+            socketClient = new SocketClient("192.168.93.136", 25566)
+                    //socketclient = new SocketClient("localhost", 25566)
                     .setKeepAlive(true).setTimeout(999999999)
                     .addConnectEvent(onConnect -> System.out.println("Connected!"))
                     .addDisconnectEvent( onDisconnect -> {

@@ -136,6 +136,8 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Text>
+            <HBox fx:id="cardListPlayerOne" layoutX="320.0" layoutY="318.0" prefHeight="62.0" prefWidth="59.0" />
+            <HBox fx:id="cardListPlayerCroupier" layoutX="320.0" layoutY="394.0" prefHeight="62.0" prefWidth="59.0" />
             </children>
         </AnchorPane>
     </children>

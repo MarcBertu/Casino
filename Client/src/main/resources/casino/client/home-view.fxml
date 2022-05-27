@@ -28,7 +28,8 @@
                 <ImageView fitHeight="474.0" fitWidth="700.0" layoutX="146.0" layoutY="105.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <image>
                         <Image url="@../../casino.image/Accueil.png" />
-                    </image></ImageView>
+                    </image>
+                </ImageView>
                 <Button fx:id="startGameButton" layoutX="245.0" layoutY="309.0" mnemonicParsing="false" onAction="#startGame" prefHeight="38.0" prefWidth="210.0" style="-fx-background-color: #FFFFFF;" text="Jouer" />
                 <Button layoutX="245.0" layoutY="421.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="210.0" style="-fx-background-color: #FFFFFF;" text="Transférer mon argent" />
             <Button layoutX="245.0" layoutY="364.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="210.0" style="-fx-background-color: #FFFFFF;" text="Historique" />

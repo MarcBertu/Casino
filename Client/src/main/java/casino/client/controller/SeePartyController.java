@@ -61,7 +61,6 @@ public class SeePartyController implements RefreshPartyListTask.PartyListRespons
     
     public void refresh() {
         try {
-            SocketSingleton.getInstance().resetSocketConnection();
             RefreshPartyListTask refreshPartyListTask = new RefreshPartyListTask(this);
             System.out.println("RESFRESH REQUEST");
         } catch (Exception e ) {
@@ -105,8 +104,6 @@ public class SeePartyController implements RefreshPartyListTask.PartyListRespons
         try {
 
             GameInfo game = partyListView.getSelectionModel().getSelectedItem();
-
-            SocketSingleton.getInstance().resetSocketConnection();
 
             UserSingleton.getInstance().setGame(game);
 

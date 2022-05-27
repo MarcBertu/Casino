@@ -24,6 +24,7 @@ public class CasinoApplication extends Application {
     public void start(Stage stage) {
 
         try{
+
             FXMLLoader fxmlLoader = new FXMLLoader(CasinoApplication.class.getResource("casino-app-view.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 700, 500);
             stage.setScene(scene);
@@ -31,6 +32,7 @@ public class CasinoApplication extends Application {
             stage.show();
 
             StageSingleton.getInstance().setStage(stage);
+
         } catch ( Exception e ) {
             System.out.println("Apparu à Casino-application start()");
             System.out.println(e.getMessage());
@@ -79,7 +81,7 @@ public class CasinoApplication extends Application {
                 UserSingleton.getInstance().setArgent(money);
             }
         } catch (Exception e) {
-            System.out.println("Apparu ici ta mere ");
+            System.out.println("Apparu a CasinoApplication - packetSetMoney ");
             System.out.println(e.getMessage());
         }
 
