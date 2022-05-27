@@ -4,6 +4,9 @@ package com.casino.entity;
 import com.google.gson.annotations.Expose;
 import xyz.baddeveloper.lwsl.server.SocketHandler;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Player {
 
     @Expose
@@ -56,4 +59,5 @@ public class Player {
     public void setMoney(int money) {
         this.money = money;
     }
+
 }

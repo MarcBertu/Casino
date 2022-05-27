@@ -38,7 +38,7 @@ public class LoginEvent extends Event{
             player.setSocket(socket);
             Main.players.add(player);
 
-            player.getSocket().sendPacket(new PlayerInformationPacket(player, true));
+            player.getSocket().sendPacket(new PlayerInformationPacket(player, null));
             player.getSocket().sendPacket(new ResponsePacket(Messages.LOGIN_SUCCESS));
 
 
